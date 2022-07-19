@@ -76,7 +76,7 @@ public class Performer implements ActionPerformer {
             }
             Item cart = null;
             String cartName="";
-            Boolean ok=false;
+            boolean ok=false;
             if (source.getInscription()!=null) {
                 cartName = source.getInscription().getInscription();
             }
