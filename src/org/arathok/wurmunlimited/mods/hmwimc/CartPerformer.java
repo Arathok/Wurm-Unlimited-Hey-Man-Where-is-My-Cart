@@ -76,6 +76,7 @@ public class CartPerformer implements ActionPerformer {
 
 
 
+
             return propagate(action,
                     ActionPropagation.FINISH_ACTION,
                     ActionPropagation.NO_SERVER_PROPAGATION,
