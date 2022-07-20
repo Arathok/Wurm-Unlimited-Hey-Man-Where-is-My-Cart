@@ -11,27 +11,19 @@ import org.gotti.wurmunlimited.modsupport.actions.ActionEntryBuilder;
 import org.gotti.wurmunlimited.modsupport.actions.ActionPerformer;
 import org.gotti.wurmunlimited.modsupport.actions.ActionPropagation;
 import org.gotti.wurmunlimited.modsupport.actions.ModActions;
-import com.wurmonline.server.questions.Question;
-import java.util.Properties;
 
-import java.sql.SQLException;
-import java.util.Iterator;
-import java.util.logging.Level;
-
-import static org.gotti.wurmunlimited.modsupport.questions.ModQuestions.getBmlHeader;
-
-public class Performer implements ActionPerformer {
+public class WritPerformer implements ActionPerformer {
 
 
         public ActionEntry actionEntry;
 
 
-        public Performer() {
+        public WritPerformer() {
             actionEntry = new ActionEntryBuilder((short) ModActions.getNextActionId(), "Search Cart", "searching",
                     new int[]{
                             6 /* ACTION_TYPE_NOMOVE */,
                             48 /* ACTION_TYPE_ENEMY_ALWAYS */,
-                            36 /* DONT CARE WHETHER SOURCE OR TARGET */,
+                            36 /* USE SOURCE AND TARGET */,
 
                     }).range(4).build();
 
@@ -66,34 +58,31 @@ public class Performer implements ActionPerformer {
             if (source.getBless()==null)
             {
                 performer.getCommunicator().sendSafeServerMessage("You try to focus on your target but somehow you can't see your cart through the veil of reality. You realize that your papersheet must be enchanted");
-
+                return propagate(action,
+                        ActionPropagation.FINISH_ACTION,
+                        ActionPropagation.NO_SERVER_PROPAGATION,
+                        ActionPropagation.NO_ACTION_PERFORMER_PROPAGATION);
             }
 
             if (source.getInscription()==null)
             {
                 performer.getCommunicator().sendSafeServerMessage("As you try to focus on the target, you see that your paper sheet is not inscribed. As you focus to try to find nothing, you realize you will find nothing everywhere.");
-
+                return propagate(action,
+                        ActionPropagation.FINISH_ACTION,
+                        ActionPropagation.NO_SERVER_PROPAGATION,
+                        ActionPropagation.NO_ACTION_PERFORMER_PROPAGATION);
             }
             Item cart = null;
-            String cartName="";
-            boolean ok=false;
-            if (source.getInscription()!=null) {
-                cartName = source.getInscription().getInscription();
-            }
-            for (Item oneItem : Items.getAllItems())
-                if (oneItem.isVehicle())
-                {
-                    if (oneItem.getName().equals(cartName)&&oneItem.getOwnerId()==performer.getWurmId())
-                    {
-                        ok = true;
-                        cart = oneItem;
-                        break;
+            long cartId=0L;
 
-                    }
-                }
+
+                cartId = Long.parseLong(source.getInscription().getInscription());
+
+
 
             try {
-                if (ok) {
+                cart=Items.getItem(cartId);
+
                     int xDistance = Math.abs(performer.getTileX() - cart.getDataX());
                     int yDistance = Math.abs(performer.getTileY() - cart.getDataY());
                     int distance = (int) Math.sqrt(xDistance * xDistance + yDistance * yDistance);
@@ -102,10 +91,10 @@ public class Performer implements ActionPerformer {
                     performer.getCommunicator().sendNormalServerMessage(
                             EndGameItems.getDistanceString(
                                     distance,
-                                    cartName,
+                                    cart.getName(),
                                     MethodsCreatures.getLocationStringFor(performer.getStatus().getRotation(), direction, "you"),
                                     true));
-                }
+
             } catch (Exception e) {
                 throw new RuntimeException(e);
             }

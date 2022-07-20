@@ -11,25 +11,25 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class Behaviour
+public class WritBehaviour
 
        implements BehaviourProvider {
 
         private final List<ActionEntry> searchCart;
-        private final Performer searchPerformer;
+        private final WritPerformer searchWritPerformer;
 
-        public Behaviour() {
-            this.searchPerformer = new Performer();
-            this.searchCart = Collections.singletonList(searchPerformer.actionEntry);
+        public WritBehaviour() {
+            this.searchWritPerformer = new WritPerformer();
+            this.searchCart = Collections.singletonList(searchWritPerformer.actionEntry);
 
-            ModActions.registerActionPerformer(searchPerformer);
+            ModActions.registerActionPerformer(searchWritPerformer);
 
         }
         @Override
         public List<ActionEntry> getBehavioursFor(Creature performer, Item source,Item target) {
 
             if ((source.getTemplateId()==ItemList.papyrusSheet||source.getTemplateId()==ItemList.paperSheet)&&target.getTemplateId() == ItemList.bodyBody) {
-                if (Performer.canUse(performer, target)) {
+                if (WritPerformer.canUse(performer, target)) {
                     return new ArrayList<>(searchCart);
                 }
 
