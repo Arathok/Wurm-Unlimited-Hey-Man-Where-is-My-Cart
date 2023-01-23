@@ -41,7 +41,7 @@ public class CartPerformer implements ActionPerformer {
         }
 
         public static boolean canUse(Creature performer, Item target) {
-            return performer.isPlayer() && target.getTemplate().getName().contains ("cart")||target.getTemplate().getName().contains ("wagon")||target.getTemplate().isVehicle();
+            return performer.isPlayer() && target.getTemplate().isVehicle();
         }
 
         @Override

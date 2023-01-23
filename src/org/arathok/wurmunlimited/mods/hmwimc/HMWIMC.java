@@ -5,10 +5,12 @@ import org.gotti.wurmunlimited.modloader.interfaces.*;
 import org.gotti.wurmunlimited.modsupport.actions.ModActions;
 
 import java.util.Properties;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class HMWIMC implements WurmServerMod, Initable, PreInitable, Configurable, ItemTemplatesCreatedListener, ServerStartedListener, ServerPollListener, PlayerMessageListener
 {
-
+ public static Logger logger;
     @Override
     public void configure(Properties properties) {
 
@@ -33,6 +35,7 @@ public class HMWIMC implements WurmServerMod, Initable, PreInitable, Configurabl
     public void onServerStarted() {
         ModActions.registerBehaviourProvider(new WritBehaviour());
         ModActions.registerBehaviourProvider(new CartBehaviour());
+        logger.log(Level.INFO,"Hey man, where is my cart? Is done Loading! Many thanks to the entire Wurm Coding Community!");
     }
 
     @Override

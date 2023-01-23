@@ -81,10 +81,10 @@ public class WritPerformer implements ActionPerformer {
         try {
             cart = Items.getItem(cartId);
 
-            int xDistance = Math.abs(performer.getTileX() - cart.getDataX());
-            int yDistance = Math.abs(performer.getTileY() - cart.getDataY());
+            int xDistance = Math.abs(performer.getTileX() - cart.getTileX());
+            int yDistance = Math.abs(performer.getTileY() - cart.getTileY());
             int distance = (int) Math.sqrt((xDistance * xDistance) + (yDistance * yDistance));
-            int direction = MethodsCreatures.getDir(performer, cart.getDataX(), cart.getDataY());
+            int direction = MethodsCreatures.getDir(performer, cart.getTileX(), cart.getTileY());
 
             performer.getCommunicator().sendNormalServerMessage(
                     EndGameItems.getDistanceString(
