@@ -32,6 +32,7 @@ public class HMWIMC implements WurmServerMod, Initable, PreInitable, Configurabl
     @Override
     public void onServerStarted() {
         ModActions.registerBehaviourProvider(new WritBehaviour());
+        ModActions.registerBehaviourProvider(new CartBehaviour());
     }
 
     @Override

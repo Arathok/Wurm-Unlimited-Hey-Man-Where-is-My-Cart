@@ -28,7 +28,7 @@ public class WritBehaviour
         @Override
         public List<ActionEntry> getBehavioursFor(Creature performer, Item source,Item target) {
 
-            if ((source.getTemplateId()==ItemList.papyrusSheet||source.getTemplateId()==ItemList.paperSheet)&&target.getTemplateId() == ItemList.bodyBody) {
+            if (((source.getTemplateId()==ItemList.papyrusSheet||source.getTemplateId()==ItemList.paperSheet))&&(target.getTemplateId() == ItemList.bodyBody||target.getTemplateId()==ItemList.bodyHand)) {
                 if (WritPerformer.canUse(performer, target)) {
                     return new ArrayList<>(searchCart);
                 }

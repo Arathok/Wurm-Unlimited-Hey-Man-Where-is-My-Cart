@@ -8,6 +8,7 @@ import com.wurmonline.server.behaviours.MethodsCreatures;
 import com.wurmonline.server.creatures.Creature;
 import com.wurmonline.server.endgames.EndGameItems;
 import com.wurmonline.server.items.Item;
+import com.wurmonline.server.items.ItemList;
 import org.gotti.wurmunlimited.modsupport.actions.ActionEntryBuilder;
 import org.gotti.wurmunlimited.modsupport.actions.ActionPerformer;
 import org.gotti.wurmunlimited.modsupport.actions.ActionPropagation;
@@ -39,7 +40,7 @@ public class WritPerformer implements ActionPerformer {
     }
 
     public static boolean canUse(Creature performer, Item target) {
-        return performer.isPlayer() && !target.getTemplate().getName().contains("body");
+        return performer.isPlayer() && (target.getTemplateId()== ItemList.bodyBody||target.getTemplateId()==ItemList.bodyHand);
     }
 
     @Override
@@ -82,7 +83,7 @@ public class WritPerformer implements ActionPerformer {
 
             int xDistance = Math.abs(performer.getTileX() - cart.getDataX());
             int yDistance = Math.abs(performer.getTileY() - cart.getDataY());
-            int distance = (int) Math.sqrt(xDistance * xDistance + yDistance * yDistance);
+            int distance = (int) Math.sqrt((xDistance * xDistance) + (yDistance * yDistance));
             int direction = MethodsCreatures.getDir(performer, cart.getDataX(), cart.getDataY());
 
             performer.getCommunicator().sendNormalServerMessage(

@@ -41,7 +41,7 @@ public class CartPerformer implements ActionPerformer {
         }
 
         public static boolean canUse(Creature performer, Item target) {
-            return performer.isPlayer() && !target.getTemplate().getName().contains ("cart");
+            return performer.isPlayer() && target.getTemplate().getName().contains ("cart")||target.getTemplate().getName().contains ("wagon")||target.getTemplate().isVehicle();
         }
 
         @Override
@@ -71,7 +71,7 @@ public class CartPerformer implements ActionPerformer {
                     String inscription = Long.toString(wurmId);
                     source.setInscription(inscription,performer.getName());
                     performer.getCommunicator().sendSafeServerMessage("You draw up the details of your cart including its name on the paper sheet. If you can get a priest to bless it you may always be able to find your cart by focussing on it, channeling it with your body.");
-                    source.setName("Vehicle Writ:"+target.getName());
+                    source.setName("Vehicle Writ: "+target.getName());
 
 
 
