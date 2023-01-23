@@ -1,8 +1,0 @@
-<component name="ArtifactManager">
-  <artifact type="jar" name="HMWIMC">
-    <output-path>$PROJECT_DIR$/../../../../../GAMES/steam/steamapps/common/Wurm Unlimited Dedicated Server/mods/HMWIMC</output-path>
-    <root id="archive" name="HMWIMC.jar">
-      <element id="module-output" name="Wurm-Unlimited-Hey-Man-Where-is-My-Cart" />
-    </root>
-  </artifact>
-</component>
