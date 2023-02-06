@@ -26,13 +26,16 @@ public class CartBehaviour implements BehaviourProvider{
         @Override
         public List<ActionEntry> getBehavioursFor(Creature performer, Item source, Item target) {
 
-            if ((source.getTemplateId()== ItemList.papyrusSheet||source.getTemplateId()==ItemList.paperSheet)&&target.getTemplate().isVehicle()) {
+            if ((source.getTemplateId()== ItemList.papyrusSheet||source.getTemplateId()==ItemList.paperSheet)&&target.getTemplate().isVehicle()&&target.getLastOwnerId()==performer.getWurmId()) {
+
                 if (CartPerformer.canUse(performer, target)) {
                     return new ArrayList<>(generateWrit);
                 }
 
-
             }
+
+
+
             return null;
         }
 
