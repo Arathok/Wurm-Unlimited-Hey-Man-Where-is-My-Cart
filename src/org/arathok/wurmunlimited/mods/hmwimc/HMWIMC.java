@@ -10,7 +10,7 @@ import java.util.logging.Logger;
 
 public class HMWIMC implements WurmServerMod, Initable, PreInitable, Configurable, ItemTemplatesCreatedListener, ServerStartedListener, ServerPollListener, PlayerMessageListener
 {
- public static Logger logger;
+ public static final Logger logger=Logger.getLogger("HMWIMC");
     @Override
     public void configure(Properties properties) {
 
