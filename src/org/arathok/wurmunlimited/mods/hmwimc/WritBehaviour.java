@@ -16,12 +16,15 @@ public class WritBehaviour
        implements BehaviourProvider {
 
         private final List<ActionEntry> searchCart;
+    private final List<ActionEntry> teleportCart;
         private final WritPerformer searchWritPerformer;
+    private final TeleportCartPerformer teleportCartPerformer;
 
         public WritBehaviour() {
             this.searchWritPerformer = new WritPerformer();
             this.searchCart = Collections.singletonList(searchWritPerformer.actionEntry);
-
+            this.teleportCartPerformer = new TeleportCartPerformer();
+            this.teleportCart=Collections.singletonList(teleportCartPerformer.actionEntry);
             ModActions.registerActionPerformer(searchWritPerformer);
 
         }
@@ -34,6 +37,10 @@ public class WritBehaviour
                 }
 
 
+            }
+            if(((source.getTemplateId()==ItemList.papyrusSheet||source.getTemplateId()==ItemList.paperSheet))&&(target.getTemplateId() == ItemList.villageToken))
+            {
+                return new ArrayList<>(teleportCart);
             }
             return null;
         }
