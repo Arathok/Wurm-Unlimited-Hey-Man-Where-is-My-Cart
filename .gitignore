@@ -21,3 +21,7 @@
 .idea/libraries/common2.xml
 .idea/misc.xml
 .idea/Wurm-Unlimited-Hey-Man-Where-is-My-Cart.iml
+out/production/Wurm-Unlimited-Hey-Man-Where-is-My-Cart/org/arathok/wurmunlimited/mods/hmwimc/Config.class
+out/production/Wurm-Unlimited-Hey-Man-Where-is-My-Cart/org/arathok/wurmunlimited/mods/hmwimc/HMWIMC.class
+out/production/Wurm-Unlimited-Hey-Man-Where-is-My-Cart/org/arathok/wurmunlimited/mods/hmwimc/TeleportCartPerformer.class
+out/production/Wurm-Unlimited-Hey-Man-Where-is-My-Cart/org/arathok/wurmunlimited/mods/hmwimc/WritBehaviour.class

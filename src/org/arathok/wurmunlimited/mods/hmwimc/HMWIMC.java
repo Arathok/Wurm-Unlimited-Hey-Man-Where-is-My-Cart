@@ -21,6 +21,9 @@ public class HMWIMC implements WurmServerMod, Initable, PreInitable, Configurabl
     @Override
     public void configure(Properties properties) {
 
+        Config.coolDownTime=Integer.parseInt(properties.getProperty("coolDownTime","86400"));
+        Config.actionSeconds=Integer.parseInt(properties.getProperty("actionSeconds","120"));
+
     }
 
     @Override
